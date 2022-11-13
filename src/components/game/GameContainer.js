@@ -2,60 +2,16 @@ import React, { useReducer } from 'react';
 
 import calculateWinner from 'libraries/tic-tac-toe';
 
-const reducer = (state, action) => {
-  switch(action.type){
-    case "play":
-      return playPayload(action.payload);
-    case "jumpTo":
-      return jumpToPayload(action.payload);
-    case "reverse":
-     return reversePayload(action.payload);
-    default:
-      return state
-  }
-}
+import {
+  play as playAction,
+  jumpTo as jumpToAction,
+  reverse as reverseAction,
+} from 'models/tic-tac-toe';
 
-const initState = {
-  history: [
-    {
-      squares: Array(9).fill(null)
-    }
-  ],
-  stepNumber: 0,
-  xIsNext: true,
-  reverseList : false
-}
-
-const playPayload = ({ history, squares, xIsNext }) => {
-  return {
-    history: history.concat(
-      [
-        {
-          squares: squares,   
-        }         
-      ]
-    ),
-    stepNumber : history.length,
-    xIsNext : xIsNext,
-  };
-}
-
-const jumpToPayload = ({ history, step }) => {
-  return { 
-    history: history,
-    stepNumber : step,
-    xIsNext : (step % 2) === 0,
-  };
-}
-
-const reversePayload = ({ state }) => {
-  return {
-    history : state.history,
-    stepNumber: state.stepNumber,
-    xIsNext: state.xIsNext,
-    reverseList : !state.reverseList
-  };
-}
+import {
+  initState,
+  reducer,
+} from 'models/tic-tac-toe';
 
 const GameContainer = ({ Component }) => {
 
@@ -72,27 +28,23 @@ const GameContainer = ({ Component }) => {
     }
     squares[i] = state.xIsNext ? "X" : "O";
     const xIsNext = !state.xIsNext;
-   dispatch({ type: "play", payload: {
-        history: history,
-        squares: squares,
-        xIsNext: xIsNext
-        }
-      }
-    )
-  }
+    dispatch(playAction({
+      history,
+      squares,
+      xIsNext,
+    }));
+  };
     
   const jumpTo = (step) => {
-    dispatch({ type: "jumpTo", payload: {
-        history: state.history,
-        step: step
-        }
-      }
-    )
-  }
+    dispatch(jumpToAction({
+      history: state.history,
+      step,
+     }));
+  };
 
   const reverse = () => {
-    dispatch({ type: "reverse" , payload: { state: state }})
-  }
+    dispatch(reverseAction({ state }));
+  };
 
   return <Component  
       play={play} 
@@ -105,5 +57,4 @@ const GameContainer = ({ Component }) => {
   />;
 }
   
-
-  export default GameContainer;
+export default GameContainer;
