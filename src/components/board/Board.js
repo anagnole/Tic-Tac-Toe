@@ -9,7 +9,7 @@ import {
 const Board = ({ squares , onClick }) => {
 
    const renderSquares = (index) => (
-        <div className = 'board-row'>
+        <div className = 'board-row' key = { index }>
             {
                 Array(3).fill(null).map((_, i ) => 
                     {
