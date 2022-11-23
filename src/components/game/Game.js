@@ -55,7 +55,7 @@ const Game = ({
         <div className="game-board">
           <Board
             squares={squares}
-            onClick={play}
+            play={play}
           />
         </div>
         <div className="game-info">

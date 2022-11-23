@@ -6,7 +6,7 @@ import {
     Square,
 } from "components";
 
-const Board = ({ squares , onClick }) => {
+const Board = ({ squares , play }) => {
 
    const renderSquares = (index) => (
         <div className = 'board-row' key = { index }>
@@ -16,7 +16,7 @@ const Board = ({ squares , onClick }) => {
                         return <Square
                             key = {i + index * 3}
                             value={squares[i + index * 3]}
-                            onClick={() => onClick(i + index * 3)}
+                            play={() => play(i + index * 3)}
                         />
                     }
                 )

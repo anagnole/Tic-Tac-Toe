@@ -6,6 +6,10 @@ import {
   reverse as reverseAction,
   initState,
   reducer,
+  history,
+  stepNumber,
+  reverseList,
+  xIsNext,
 } from 'models/tic-tac-toe';
 
 const GameContainer = ({ Component }) => {
@@ -16,10 +20,10 @@ const GameContainer = ({ Component }) => {
       play={i => dispatch(playAction({ i }))} 
       reverse={() => dispatch(reverseAction())}
       jumpTo={step => dispatch(jumpToAction({ step }))} 
-      history={state.history}
-      stepNumber={state.stepNumber}
-      reverseList={state.reverseList}
-      xIsNext={state.xIsNext}
+      history={history(state)}
+      stepNumber={stepNumber(state)}
+      reverseList={reverseList(state)}
+      xIsNext={xIsNext(state)}
   />;
 }
   
