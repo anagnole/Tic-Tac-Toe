@@ -1,9 +1,7 @@
-import SquareContainer from './square';
+import Square from './square';
 import Board from './board';
-//import GameContainer from './game';
 
 export {
-  SquareContainer,
+  Square,
   Board,
-  //GameContainer,
 }; 

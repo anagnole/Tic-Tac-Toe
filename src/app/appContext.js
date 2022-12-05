@@ -1,9 +1,8 @@
 import { createContext } from "react";
 
 const AppContext = createContext();
-const { Provider } = AppContext;
-
+const { Provider: AppProvider } = AppContext;
 export { 
     AppContext,
-    Provider,
+    AppProvider,
 };

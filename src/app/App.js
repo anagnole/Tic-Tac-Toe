@@ -1,8 +1,8 @@
 import React, { useReducer } from 'react';
 
-import GameContainer from 'components/game';
+import Game from 'components/game';
 
-import { Provider } from './';
+import { AppProvider } from './';
 
 import calculateWinner from 'libraries/tic-tac-toe';
 
@@ -28,7 +28,7 @@ const App = () => {
   const winner = calculateWinner(squares);
   
   return (
-    <Provider value={{
+    <AppProvider value={{
       play,
       reverse,
       jumpTo,
@@ -38,11 +38,9 @@ const App = () => {
       xIsNext: xIsNext(state),
       squares,
       winner,
-    }}
-    >
-      <GameContainer/>
-
-    </Provider>
+    }}>
+      <Game/>
+    </AppProvider>
   );
 }
  

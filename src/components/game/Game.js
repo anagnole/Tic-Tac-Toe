@@ -59,9 +59,24 @@ const Game = ({
 }
 
 const GameContainer = () => { 
+  const {
+    reverse,
+    jumpTo, 
+    history,
+    reverseList,
+    xIsNext,
+    winner,
+  } = useContext(AppContext);
   const props = useContext(AppContext);
-  return <Game {...props}/>;
-}
   
-//export default Game;
+  return <Game 
+    reverse={reverse}
+    jumpTo={jumpTo} 
+    history={history}
+    reverseList={reverseList}
+    xIsNext={xIsNext}
+    winner={winner}
+  />;
+}
+
 export default GameContainer;

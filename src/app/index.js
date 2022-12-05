@@ -1,9 +1,9 @@
 import App from "./App";
-import { AppContext, Provider } from "./appContext";
+import { AppContext, AppProvider } from "./appContext";
 
 export { 
     AppContext, 
-    Provider,
+    AppProvider,
 };
 
 export default App;
