@@ -1,35 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { Board } from "components";
+
+import { AppContext } from 'app';
 
 import './game.css';
-
-import calculateWinner from 'libraries/tic-tac-toe';
-
-import {
-    Board,
-} from "components";
-
-export const Squares = React.createContext();
 
 const Game = ({
   reverse,
   jumpTo, 
   history,
-  stepNumber,
   reverseList,
   xIsNext,
+  winner,
 }) => {
-  const squares = history[stepNumber].squares;
-  const winner = calculateWinner(squares);
 
   const findRowCol = (move) => {
-    return history[move].squares.findIndex((elem , index) => elem != history[move - 1].squares[index]);
+    return history[move].squares.findIndex((elem , index) => elem !== history[move - 1].squares[index]);
   }
 
   const bold = (move) => {
     document.getElementById(move).style.fontWeight = "bold";
     jumpTo(move);
     for(let elem = 0; elem <= history.length - 1; elem++){
-        if(elem != move) document.getElementById(elem).style.fontWeight = "normal";
+      if(elem !== move) document.getElementById(elem).style.fontWeight = "normal";
     };
   }
 
@@ -40,7 +34,7 @@ const Game = ({
       'Go to game start';
       
     return (
-    <li key={ move }> 
+    <li key={ move } className="moveList"> 
         <button onClick= {() => { bold(move) } } id = {move}> {desc} </button> 
     </li>
     );
@@ -53,9 +47,7 @@ const Game = ({
   return (
     <div className="game">
       <div className="game-board">
-        <Squares.Provider value={squares}>
           <Board/>
-        </Squares.Provider>
       </div>
       <div className="game-info">
         <div>{status}</div>
@@ -65,6 +57,11 @@ const Game = ({
     </div>
   );
 }
-  
 
-  export default Game;
+const GameContainer = () => { 
+  const props = useContext(AppContext);
+  return <Game {...props}/>;
+}
+  
+//export default Game;
+export default GameContainer;

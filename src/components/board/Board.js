@@ -2,9 +2,7 @@ import React from 'react';
 
 import './board.css';
 
-import {
-    Square,
-} from "components";
+import { SquareContainer } from 'components';
 
 const Board = () => {
 
@@ -13,7 +11,7 @@ const Board = () => {
             {
                 Array(3).fill(null).map((_, i ) => 
                     {
-                        return <Square
+                        return <SquareContainer
                             index={i+ index * 3}
                             key={i + index * 3}
                         />

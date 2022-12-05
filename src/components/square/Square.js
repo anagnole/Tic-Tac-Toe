@@ -1,15 +1,24 @@
 import React, { useContext } from 'react';
-import {Context, Squares} from 'components/game';
+import { AppContext } from 'app';
 import './square.css';
 
-const Square = ({ index }) => {
-  const play = useContext(Context);
-  const squares = useContext(Squares);
+const Square = ({ index, value, play }) => {
   return (
   <button className="square" onClick={() => {play(index)}}>
-    {squares[index]}
+    {value}
   </button>
   );
 };
 
-export default Square;
+const SquareContainer = ({ index }) => {
+  const {
+    play,
+    squares,
+   } = useContext(AppContext);
+
+  return (
+    <Square index={index} play={play} value={squares[index]}/>
+  );
+};
+
+export default SquareContainer;

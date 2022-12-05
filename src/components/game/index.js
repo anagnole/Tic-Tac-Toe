@@ -1,10 +1,5 @@
-import Game from './Game';
-import GameContainer from './GameContainer';
-import {Context} from './GameContainer';
-import {Squares} from './Game';
+import GameContainer from './Game';
+//import Game from "./Game";
 
-export {
-    Context,
-    Squares
-};
-export default () => <GameContainer Component={Game}/>;
+export default GameContainer;
+//export default Game;

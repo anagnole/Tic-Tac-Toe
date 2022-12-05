@@ -1,13 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; //client
+import ReactDOM from 'react-dom/client'; 
 
-import {
-  Square,
-  Board,
-  Game,
-} from "components";
+import App from 'app';
 
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<Game />);
+root.render(<App/>);
