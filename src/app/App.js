@@ -16,17 +16,19 @@ import {
   stepNumber,
   reverseList,
   xIsNext,
+  squares as squareSelector,
 } from 'models/tic-tac-toe';
 
 const App = () => {
   const [state, dispatch] = useReducer( reducer, initState );
 
-  const play = i => dispatch(playAction({ i }));
+  const play = payload => dispatch(playAction(payload));
   const reverse = () => dispatch(reverseAction());
-  const jumpTo = step => dispatch(jumpToAction({ step }));
-  const squares = history(state)[stepNumber(state)].squares;
+  const jumpTo = payload => dispatch(jumpToAction(payload));
+  const squares = squareSelector(state);
   const winner = calculateWinner(squares);
   
+
   return (
     <AppProvider value={{
       play,

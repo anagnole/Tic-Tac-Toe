@@ -2,9 +2,21 @@ import React, { useContext } from 'react';
 
 import { Board } from "components";
 
-import { AppContext } from 'app';
+import Container from 'libraries/models/Container';
 
 import './game.css';
+
+import {
+  reverse,
+  jumpTo,
+ } from 'models/tic-tac-toe/actions';
+
+import {
+  history,
+  reverseList,
+  xIsNext,
+  winner,
+} from 'models/tic-tac-toe/selectors';
 
 const Game = ({
   reverse,
@@ -21,7 +33,7 @@ const Game = ({
 
   const bold = (move) => {
     document.getElementById(move).style.fontWeight = "bold";
-    jumpTo(move);
+    jumpTo({step: move});
     for(let elem = 0; elem <= history.length - 1; elem++){
       if(elem !== move) document.getElementById(elem).style.fontWeight = "normal";
     };
@@ -58,25 +70,36 @@ const Game = ({
   );
 }
 
-const GameContainer = () => { 
-  const {
-    reverse,
-    jumpTo, 
-    history,
-    reverseList,
-    xIsNext,
-    winner,
-  } = useContext(AppContext);
-  const props = useContext(AppContext);
-  
-  return <Game 
-    reverse={reverse}
-    jumpTo={jumpTo} 
-    history={history}
-    reverseList={reverseList}
-    xIsNext={xIsNext}
-    winner={winner}
-  />;
+// const GameContainer = () => { 
+//   const {
+//     reverse,
+//     jumpTo, 
+//     history,
+//     reverseList,
+//     xIsNext,
+//     winner,
+//   } = useContext(AppContext);
+
+//   return <Game 
+//     reverse={reverse}
+//     jumpTo={jumpTo} 
+//     history={history}
+//     reverseList={reverseList}
+//     xIsNext={xIsNext}
+//     winner={winner}
+//   />;
+// }
+
+const stateProps = {
+  history,
+  reverseList,
+  xIsNext,
+  winner,
 }
 
-export default GameContainer;
+const actionProps = {
+  reverse,
+  jumpTo,
+}
+
+export default () => <Container component={Game} actionProps={actionProps} stateProps={stateProps}/>;
