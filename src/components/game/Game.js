@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { Board } from "components";
+import { Board } from 'components';
 
-import Container from 'libraries/models/Container';
+import connect from 'libraries/models/connect';
 
 import './game.css';
 
@@ -70,36 +70,13 @@ const Game = ({
   );
 }
 
-// const GameContainer = () => { 
-//   const {
-//     reverse,
-//     jumpTo, 
-//     history,
-//     reverseList,
-//     xIsNext,
-//     winner,
-//   } = useContext(AppContext);
-
-//   return <Game 
-//     reverse={reverse}
-//     jumpTo={jumpTo} 
-//     history={history}
-//     reverseList={reverseList}
-//     xIsNext={xIsNext}
-//     winner={winner}
-//   />;
-// }
-
-const stateProps = {
-  history,
-  reverseList,
-  xIsNext,
-  winner,
-}
-
-const actionProps = {
-  reverse,
-  jumpTo,
-}
-
-export default () => <Container component={Game} actionProps={actionProps} stateProps={stateProps}/>;
+export default connect(Game)({
+    history,
+    reverseList,
+    xIsNext,
+    winner,
+  },
+  {
+    reverse,
+    jumpTo,
+});

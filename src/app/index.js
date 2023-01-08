@@ -1,5 +1,5 @@
-import App from "./App";
-import { AppContext, AppProvider } from "./appContext";
+import App from './App';
+import { AppContext, AppProvider } from './appContext';
 
 export { 
     AppContext, 

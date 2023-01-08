@@ -1,6 +1,4 @@
-// import React, { useContext } from 'react';
-// import { AppContext } from 'app';
-import Container from 'libraries/models/Container';
+import connect from 'libraries/models/connect';
 
 import {
   squares
@@ -20,28 +18,9 @@ const Square = ({ squares, play, index }) => {
   );
 };
 
-// const SquareContainer = ({ index }) => {
-//   const {
-//     play,
-//     squares,
-//    } = useContext(AppContext);
-
-//   return (
-//     <Square index={index} play={play} value={squares[index]}/>
-//   );
-// };
-
-const stateProps = {
-  squares,
-}
-const actionProps = {
-  play,
-}
-
-export default (index) => <Container 
-component={Square} 
-actionProps={actionProps} 
-stateProps={stateProps} 
-props={index}
-/>;
-
+export default connect(Square)({
+    squares,
+  },
+  {
+    play,
+});
