@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { Board } from 'components';
 
-//import connect from 'libraries/models/connect';
-
 import './game.css';
 
 import {

@@ -1,4 +1,3 @@
-//import connect from 'libraries/models/connect';
 import { connect } from 'react-redux';
 
 import {
