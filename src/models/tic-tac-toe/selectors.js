@@ -1,6 +1,6 @@
-export const history = ({ history }) => history;
-export const stepNumber = ({ stepNumber }) => stepNumber;
-export const reverseList = ({ reverseList }) => reverseList;
-export const xIsNext = ({ xIsNext }) => xIsNext;
-export const squares = state => history(state)[stepNumber(state)].squares;
-export const winner = ({ winner }) => winner;
+export const historySelector = ({ history }) => history;
+export const stepNumberSelector = ({ stepNumber }) => stepNumber;
+export const reverseListSelector = ({ reverseList }) => reverseList;
+export const xIsNextSelector = ({ xIsNext }) => xIsNext;
+export const squaresSelector = state => historySelector(state)[stepNumberSelector(state)].squares;
+export const winnerSelector = ({ winner }) => winner;

@@ -1,31 +1,46 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+
+import { jumpTo, reverse } from './gameSlice';
 
 import { Board } from 'components';
 
-import connect from 'libraries/models/connect';
+//import connect from 'libraries/models/connect';
 
 import './game.css';
 
-import {
-  reverse,
-  jumpTo,
- } from 'models/tic-tac-toe/actions';
+// import {
+//   reverse,
+//   jumpTo,
+//  } from 'models/tic-tac-toe/actions';
 
 import {
-  history,
-  reverseList,
-  xIsNext,
-  winner,
+  historySelector,
+  reverseListSelector,
+  xIsNextSelector,
+  winnerSelector,
 } from 'models/tic-tac-toe/selectors';
 
-const Game = ({
-  reverse,
-  jumpTo, 
-  history,
-  reverseList,
-  xIsNext,
-  winner,
-}) => {
+const Game = (
+  //{
+  // reverse,
+  // jumpTo, 
+  // history,
+  // reverseList,
+  // xIsNext,
+  // winner,
+  //}
+) => {
+  const dispatch = useDispatch();
+  const history = useSelector(state => state.game.history)
+  const reverseList = useSelector(state => state.game.reverseList);
+  const xIsNext = useSelector(state => state.game.xIsNext);
+  const winner = useSelector(state => state.game.winner);
+  //const history = useSelector(historySelector);
+  // const reverseList = useSelector(reverseListSelector);
+  // const xIsNext = useSelector(xIsNextSelector);
+  // const winner = useSelector(winnerSelector);
 
   const findRowCol = (move) => {
     return history[move].squares.findIndex((elem , index) => elem !== history[move - 1].squares[index]);
@@ -33,7 +48,7 @@ const Game = ({
 
   const bold = (move) => {
     document.getElementById(move).style.fontWeight = "bold";
-    jumpTo({step: move});
+    dispatch(jumpTo({step: move}));
     for(let elem = 0; elem <= history.length - 1; elem++){
       if(elem !== move) document.getElementById(elem).style.fontWeight = "normal";
     };
@@ -63,20 +78,21 @@ const Game = ({
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <button onClick={reverse}>Reverse List</button>
+        <button onClick={() => dispatch(reverse())}>Reverse List</button>
         <ol>{moves}</ol>
       </div>
     </div>
   );
 }
 
-export default connect(Game)({
-    history,
-    reverseList,
-    xIsNext,
-    winner,
-  },
-  {
-    reverse,
-    jumpTo,
-});
+export default Game;
+// export default connect(Game)({
+//     history,
+//     reverseList,
+//     xIsNext,
+//     winner,
+//   },
+//   {
+//     reverse,
+//     jumpTo,
+// });

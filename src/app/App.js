@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 
 import Game from 'components/game';
-
+import { Provider } from 'react-redux';
 import { AppProvider } from './';
 
 import calculateWinner from 'libraries/tic-tac-toe';
@@ -22,31 +22,32 @@ import {
 import './app.css';
 
 const App = () => {
-  const [state, dispatch] = useReducer( reducer, initState );
+  // const [state, dispatch] = useReducer( reducer, initState );
 
-  const play = payload => dispatch(playAction(payload));
-  const reverse = () => dispatch(reverseAction());
-  const jumpTo = payload => dispatch(jumpToAction(payload));
-  const squares = squareSelector(state);
-  const winner = calculateWinner(squares);
+  // const play = payload => dispatch(playAction(payload));
+  // const reverse = () => dispatch(reverseAction());
+  // const jumpTo = payload => dispatch(jumpToAction(payload));
+  // const squares = squareSelector(state);
+  // const winner = calculateWinner(squares);
+
 
   return (
-    <AppProvider value={{
-      state: {
-        play,
-        reverse,
-        jumpTo,
-        history: history(state),
-        stepNumber: stepNumber(state),
-        reverseList: reverseList(state),
-        xIsNext: xIsNext(state),
-        squares,
-        winner,
-      },
-      dispatch, 
-    }}>
+    // <AppProvider value={{
+    //   state: {
+    //     play,
+    //     reverse,
+    //     jumpTo,
+    //     history: history(state),
+    //     stepNumber: stepNumber(state),
+    //     reverseList: reverseList(state),
+    //     xIsNext: xIsNext(state),
+    //     squares,
+    //     winner,
+    //   },
+    //   dispatch, 
+    // }}>
       <Game/>
-    </AppProvider>
+    // </AppProvider>
   );
 }
  
