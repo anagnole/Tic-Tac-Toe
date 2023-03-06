@@ -1,4 +1,7 @@
 import React, { useReducer } from 'react';
+import { Provider } from 'react-redux';
+
+import store from './store';
 
 import Game from 'components/game';
 
@@ -31,22 +34,23 @@ const App = () => {
   const winner = calculateWinner(squares);
 
   return (
-    <AppProvider value={{
-      state: {
-        play,
-        reverse,
-        jumpTo,
-        history: history(state),
-        stepNumber: stepNumber(state),
-        reverseList: reverseList(state),
-        xIsNext: xIsNext(state),
-        squares,
-        winner,
-      },
-      dispatch, 
-    }}>
+    // <AppProvider value={{
+    //   state: {
+    //     play,
+    //     reverse,
+    //     jumpTo,
+    //     history: history(state),
+    //     stepNumber: stepNumber(state),
+    //     reverseList: reverseList(state),
+    //     xIsNext: xIsNext(state),
+    //     squares,
+    //     winner,
+    //   },
+    //   dispatch, 
+    // }}>
+    <Provider store={store}>
       <Game/>
-    </AppProvider>
+    </Provider>
   );
 }
  

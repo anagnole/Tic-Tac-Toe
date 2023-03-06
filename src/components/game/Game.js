@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { Board } from 'components';
 
-import connect from 'libraries/models/connect';
+//import connect from 'libraries/models/connect';
 
 import './game.css';
 
@@ -69,14 +70,18 @@ const Game = ({
     </div>
   );
 }
+const mapStateToProp = state => {
+  return {
+    history: history(state),
+    reverseList: reverseList(state),
+    xIsNext: xIsNext(state),
+    winner: winner(state),
+  }
+}
 
-export default connect(Game)({
-    history,
-    reverseList,
-    xIsNext,
-    winner,
-  },
+export default connect(
+  mapStateToProp,
   {
     reverse,
     jumpTo,
-});
+})(Game);

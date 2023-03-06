@@ -1,4 +1,5 @@
-import connect from 'libraries/models/connect';
+//import connect from 'libraries/models/connect';
+import { connect } from 'react-redux';
 
 import {
   squares
@@ -17,10 +18,14 @@ const Square = ({ squares, play, index }) => {
   </button>
   );
 };
+const mapStateToProp = state => {
+  return {
+    squares: squares(state),
+  };
+};
 
-export default connect(Square)({
-    squares,
-  },
+export default connect(
+  mapStateToProp,
   {
     play,
-});
+})(Square);
