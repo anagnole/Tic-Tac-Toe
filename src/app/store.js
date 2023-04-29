@@ -1,7 +1,19 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import { createEpicMiddleware } from 'redux-observable';
 
 import { reducer, initState } from "models/tic-tac-toe";
+import epic from "models/tic-tac-toe/epics";
 
-const store = createStore(reducer, initState);
+const epicMiddleware = createEpicMiddleware();
 
-export default store;
+export default function configureStore() {
+    const store = createStore(
+        reducer,
+        initState,
+        applyMiddleware(epicMiddleware),
+      );
+
+      epicMiddleware.run(epic);
+
+      return store;
+};

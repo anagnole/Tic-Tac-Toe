@@ -10,7 +10,7 @@ import './app.css';
 const App = () => {
 
   return (
-    <Provider store={store}>
+    <Provider store={store()}>
       <Game/>
     </Provider>
   );
